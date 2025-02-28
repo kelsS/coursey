@@ -4,3 +4,4 @@
 
 - Nuxt3
 - Nuxi
+- npm
