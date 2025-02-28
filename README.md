@@ -3,3 +3,4 @@
 ## Build tools
 
 - Nuxt3
+- Nuxi
