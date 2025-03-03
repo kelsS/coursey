@@ -1,6 +1,6 @@
 <template>
     <div>
-      <p class="mt-0 uppercase font-bold text-slate-400 mb-1">
+      <p class="mt-0 uppercase font-bold text-slate-500 mb-1">
         Lesson {{ chapter.number }} - {{ lesson.number }}
       </p>
       <h2 class="my-0">{{ lesson.title }}</h2>
@@ -51,3 +51,13 @@
   // show course data in console
   console.log(course);
   </script>
+
+<style scoped>
+    a:focus,
+    a:hover,
+    button:focus,
+    button:hover {
+        outline: 2px solid red;
+        border-radius: 5px;
+    }
+</style>
