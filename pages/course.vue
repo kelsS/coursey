@@ -21,11 +21,22 @@
             v-for="chapter in chapters"
             :key="chapter.slug">
             <h3>{{ chapter.title }}</h3>
+            <!-- NuxtLink = drop in replacement for <a> tag -> change :href = :to -->
+                <!-- :class -> updates class based on route path -->
+                 <!-- sets the active link color to red -->
                 <NuxtLink
                     v-for="(lesson, index) in chapter.lessons"
                     :key="lesson.slug"
                     class="flex flex-row space-x-1 prose-sm font-normal py-1 px-4 -mx-4"
-                    :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`">
+                    :to="lesson.path"
+                    :class="{
+                        'text-red-900':
+                        lesson.path === $route.fullPath,
+                        'text-gray-500':
+                        lesson.path !== $route.fullPath,
+                    }"
+                    >
+                    <!-- full path in useCourse.ts -->
                     <span class="text-gray-500">{{ index + 1 }}.</span>
                     <span>{{ lesson.title }}</span>
                 </NuxtLink>
@@ -67,5 +78,11 @@ useHead({
     button:hover {
         outline: 2px solid red;
         border-radius: 5px;
+    }
+
+    /* set router link active class */
+    .router-link-active {
+        /* set the active link color*/
+        @apply text-red-900;
     }
 </style>
