@@ -58,10 +58,6 @@
 const { chapters } = useCourse();
 
 useHead({
-  title: 'Course: Mastering Nuxt 3',
-  meta: [
-    { name: 'description', content: 'Video course on how to master Nuxt 3' }
-  ],
   htmlAttrs: {
     lang: 'en'
   },

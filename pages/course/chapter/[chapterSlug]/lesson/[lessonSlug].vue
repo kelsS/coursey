@@ -25,6 +25,7 @@
         :videoId="lesson.videoId"
       />
       <p>{{ lesson.text }}</p>
+      <LessonCompleteButton />
     </div>
 </template>
   
@@ -47,6 +48,14 @@
       (lesson) => lesson.slug === route.params.lessonSlug
     );
   });
+
+  // set dynamic title
+  const title = computed(() => {
+    return `${lesson.value.title} - ${course.title}`;
+  })
+  useHead({
+    title
+  })
 
   // show course data in console
   console.log(course);
