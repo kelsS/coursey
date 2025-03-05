@@ -12,11 +12,11 @@
         @input="() => $emit('update:modelValue', !modelValue)"
         class="hidden"
       />
-      {{ modelValue ? 'Completed!' : 'Mark as complete' }}
+      {{ modelValue ? `${lessonTitle} Completed!` : 'Mark as complete' }}
     </label>
 </template>
   
-<script setup>
+<script setup lang="ts">
     defineProps({
         modelValue: {
             type: Boolean,
@@ -25,6 +25,12 @@
     });
 
     defineEmits(['update:modelValue']);
+
+    const lessonTitle = ref('');
+
+    watchEffect(() => {
+      lessonTitle.value = document.title
+    })
 </script>
   
 <style scoped>
@@ -32,3 +38,4 @@
     display: none;
     }
 </style>
+

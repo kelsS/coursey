@@ -25,12 +25,15 @@
         :videoId="lesson.videoId"
       />
       <p>{{ lesson.text }}</p>
-      <!-- map button to progress var -->
-      <LessonCompleteButton v-model="progress" />
+      <!-- map button to progress feature -->
+      <!-- must use nuxt method instead of vue v-model -->
+      <LessonCompleteButton :model-value="isLessonComplete" @update:model-value="toggleComplete" />
     </div>
 </template>
   
   <script setup>
+  import LessonCompleteButton from '~/components/LessonCompleteButton.vue';
+
   // get course
   const course = useCourse();
   // get route
@@ -59,7 +62,54 @@
   })
 
   // create reference to lesson-complete-button
-  const progress = ref();
+  // to work better with databases store the state of each marked complete into one variable
+  // store the variable with useState
+  // allows us to share the progress state across lessons
+  // useState handles server side data better than ref()
+  const progress = useState('progress', () => {
+    // return the default value in case the value has not been initialized yet
+    return [];
+  });
+
+  const isLessonComplete = computed(() => {
+
+    // check for the chapter array
+    // if chapter array DOES NOT exist then the lesson is still incomplete
+    if (!progress.value[ chapter.value.number - 1]) {
+      console.log('lesson not completed');
+      return false;
+    }
+
+    // check to see if the lesson exists
+    // if lesson array DOES NOT exist then the lesson is still incomplete
+    if (!progress.value[chapter.value.number - 1][
+      lesson.value.number - 1
+    ]) {
+      console.log('lesson not completed');
+      return false;
+    }
+
+    // if chapter and lesson array DOES exist the lesson is complete
+    // we return the value
+    return progress.value[chapter.value.number - 1][
+      lesson.value.number - 1
+    ];
+  }); // end isLessonComplete
+
+  // use toggleComplete variable to update the progress state
+  const toggleComplete = () => {
+    // if chapter array DOES NOT exist create it
+    if (!progress.value[chapter.value.number - 1]) {
+      progress.value[chapter.value.number - 1] = [];
+    }
+
+    // once we make sure the array exists we set the value
+    // flips between true and false
+    progress.value[chapter.value.number - 1][
+      lesson.value.number - 1
+    ] = !isLessonComplete.value;
+  } // end toggleComplete
+
   // show course data in console
   console.log(course);
   </script>
