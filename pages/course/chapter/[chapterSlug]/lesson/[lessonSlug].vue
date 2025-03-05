@@ -25,7 +25,8 @@
         :videoId="lesson.videoId"
       />
       <p>{{ lesson.text }}</p>
-      <LessonCompleteButton />
+      <!-- map button to progress var -->
+      <LessonCompleteButton v-model="progress" />
     </div>
 </template>
   
@@ -57,6 +58,8 @@
     title
   })
 
+  // create reference to lesson-complete-button
+  const progress = ref();
   // show course data in console
   console.log(course);
   </script>
