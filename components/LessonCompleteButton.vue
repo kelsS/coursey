@@ -1,3 +1,23 @@
+<template>
+    <label
+      class="rounded text-white font-bold py-2 px-4 cursor-pointer"
+      :class="{
+        'bg-green-500': modelValue,
+        'bg-gray-500': !modelValue,
+      }"
+    >
+      <input
+        type="checkbox"
+        :value="modelValue"
+        @input="() => $emit('update:modelValue', !modelValue)"
+        class="hidden"
+      />
+      {{ modelValue ? `"${title}" completed!` : 'Mark as complete' }}
+      <!-- @todo: get feedback on which button text is better -->
+      <!-- {{ modelValue ? `"${title}" Lesson Completed!` : 'Mark as complete' }} -->
+    </label>
+</template>
+
 <script setup lang="ts">
   // get course
   const course = useCourse();
@@ -35,26 +55,6 @@
 
     defineEmits(['update:modelValue']);
 </script>
-
-<template>
-    <label
-      class="rounded text-white font-bold py-2 px-4 cursor-pointer"
-      :class="{
-        'bg-green-500': modelValue,
-        'bg-gray-500': !modelValue,
-      }"
-    >
-      <input
-        type="checkbox"
-        :value="modelValue"
-        @input="() => $emit('update:modelValue', !modelValue)"
-        class="hidden"
-      />
-      {{ modelValue ? `"${title}" completed!` : 'Mark as complete' }}
-      <!-- @todo: get feedback on which button text is better -->
-      <!-- {{ modelValue ? `"${title}" Lesson Completed!` : 'Mark as complete' }} -->
-    </label>
-</template>
   
 <style scoped>
     ::selection {
