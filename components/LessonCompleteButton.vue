@@ -1,3 +1,41 @@
+<script setup lang="ts">
+  // get course
+  const course = useCourse();
+  // get route
+  const route = useRoute();
+  
+  // get chapter by chapter slug
+  const chapter = computed(() => {
+    return course.chapters.find(
+      (chapter) => chapter.slug === route.params.chapterSlug
+    );
+  });
+  
+  // get lesson by lesson slug
+  const lesson = computed(() => {
+    return chapter.value.lessons.find(
+      (lesson) => lesson.slug === route.params.lessonSlug
+    );
+  });
+
+  // set dynamic title
+  const title = computed(() => {
+    return `${lesson.value.title}`;
+  })
+  useHead({
+    title
+  })
+
+  defineProps({
+        modelValue: {
+            type: Boolean,
+            default: false,
+        },
+    });
+
+    defineEmits(['update:modelValue']);
+</script>
+
 <template>
     <label
       class="rounded text-white font-bold py-2 px-4 cursor-pointer"
@@ -12,26 +50,11 @@
         @input="() => $emit('update:modelValue', !modelValue)"
         class="hidden"
       />
-      {{ modelValue ? `${lessonTitle} Completed!` : 'Mark as complete' }}
+      {{ modelValue ? `"${title}" completed!` : 'Mark as complete' }}
+      <!-- @todo: get feedback on which button text is better -->
+      <!-- {{ modelValue ? `"${title}" Lesson Completed!` : 'Mark as complete' }} -->
     </label>
 </template>
-  
-<script setup lang="ts">
-    defineProps({
-        modelValue: {
-            type: Boolean,
-            default: false,
-        },
-    });
-
-    defineEmits(['update:modelValue']);
-
-    const lessonTitle = ref('');
-
-    watchEffect(() => {
-      lessonTitle.value = document.title
-    })
-</script>
   
 <style scoped>
     ::selection {
