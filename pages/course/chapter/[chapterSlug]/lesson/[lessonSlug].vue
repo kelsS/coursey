@@ -25,9 +25,13 @@
         :videoId="lesson.videoId"
       />
       <p>{{ lesson.text }}</p>
-      <!-- map button to progress feature -->
-      <!-- must use nuxt method instead of vue v-model -->
-      <LessonCompleteButton :model-value="isLessonComplete" @update:model-value="toggleComplete" />
+      <!-- render the button only on the client side for now since server is not set up yet-->
+       <!-- use nuxt: <ClientOnly> tag -->
+       <ClientOnly>
+        <!-- map button to progress feature -->
+        <!-- must use nuxt method instead of vue v-model -->
+        <LessonCompleteButton :model-value="isLessonComplete" @update:model-value="toggleComplete" />
+       </ClientOnly>
     </div>
 </template>
   
@@ -66,10 +70,9 @@
   // store the variable with useState
   // allows us to share the progress state across lessons
   // useState handles server side data better than ref()
-  const progress = useState('progress', () => {
-    // return the default value in case the value has not been initialized yet
-    return [];
-  });
+  // switch from useState to useLocalStorage to store the state in local storage which persists on browser refresh
+  // set second param to an empty array
+  const progress = useLocalStorage('progress', []);
 
   const isLessonComplete = computed(() => {
 
