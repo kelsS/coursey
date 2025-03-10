@@ -27,6 +27,9 @@
       <p>{{ lesson.text }}</p>
       <!-- render the button only on the client side for now since server is not set up yet-->
        <!-- use nuxt: <ClientOnly> tag -->
+        <!-- to render something on the client side only always add the .client.vue extension to the file name -->
+        <!-- then remove the <ClientOnly> tag -->
+        <!-- ie. LessonCompleteButton.client.vue -->
        <ClientOnly>
         <!-- map button to progress feature -->
         <!-- must use nuxt method instead of vue v-model -->
