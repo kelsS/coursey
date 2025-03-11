@@ -10,9 +10,9 @@
         </h1>
       </header>
   
-      <div class="flex flex-row justify-center flex-grow">
+      <div class="flex flex-col md:flex-row justify-center flex-grow">
         <nav
-          class="prose mr-4 p-8 bg-white rounded-md min-w-[20ch] flex flex-col" id="chapter-nav" aria-label="Chapters">
+          class="prose mb-16 md:mb-0 md:mr-4 p-8 bg-white rounded-md md:min-w-[20ch] flex flex-col" id="chapter-nav" aria-label="Chapters">
           <h2>Chapters</h2>
           <!-- All the lessons for the course listed here -->
           <!-- render course -->
