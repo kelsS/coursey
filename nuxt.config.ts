@@ -9,11 +9,7 @@ export default defineNuxtConfig({
     },
   },
 
-  nitro: {
-    prerender: {
-      routes: ['/landing'],
-    }
-  },
+  nitro: {},
 
   vite: {
     plugins: [],
