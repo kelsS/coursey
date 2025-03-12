@@ -12,7 +12,13 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: ['/landing'],
-    },
+    },    
+    publicAssets: [
+      {
+        dir: "public",
+        baseURL: "/"
+      }
+    ]
   },
 
   vite: {
