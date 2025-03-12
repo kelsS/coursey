@@ -10,16 +10,9 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'node-server',
     prerender: {
       routes: ['/landing'],
-    },    
-    publicAssets: [
-      {
-        dir: "public",
-        baseURL: "/"
-      }
-    ]
+    }
   },
 
   vite: {
