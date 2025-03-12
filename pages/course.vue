@@ -13,10 +13,12 @@
       <div class="flex flex-col md:flex-row justify-center flex-grow">
         <nav
           class="prose mb-16 md:mb-0 md:mr-4 p-8 bg-white rounded-md md:min-w-[20ch] flex flex-col sticky md:relative" id="chapter-nav" aria-labelledby="course-chapters-title">
-          <h2 id="course-chapters-title"><span class="visually-hidden">Course </span>Chapters</h2>
-          <ClientOnly>
-            <ToggleButton :model-value="isOpen" @update:model-value="toggleOpen" />
-          </ClientOnly>
+          <div class="chapter-nav-title-container">
+            <h2 id="course-chapters-title"><span class="visually-hidden">Course </span>Chapters</h2>
+            <ClientOnly>
+              <ToggleButton :model-value="isOpen" @update:model-value="toggleOpen" />
+            </ClientOnly>
+          </div>
           <!-- All the lessons for the course listed here -->
           <!-- render course -->
           <section id="chapters-submenu" class="menu-closed">          
@@ -138,6 +140,11 @@ isMenuOpen.value = !isOpen.value;
 
      .menu-closed {
       display: none;
+     }
+
+     .chapter-nav-title-container {
+      display: flex;
+      justify-content: space-between;
      }
 
     /**
