@@ -1,4 +1,4 @@
-import vsharp from 'vite-plugin-vsharp';
+// import vsharp from 'vite-plugin-vsharp';
 
 export default defineNuxtConfig({
   runtimeConfig: {
@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    preset: 'node-server',
     prerender: {
       routes: ['/landing'],
     },    
@@ -22,7 +23,7 @@ export default defineNuxtConfig({
   },
 
   vite: {
-    plugins: [vsharp()],
+    plugins: [],
   },
 
   modules: [
