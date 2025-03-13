@@ -10,10 +10,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {},
-
-  vite: {
-    plugins: [],
-  },
+  vite: {},
 
   modules: [
     '@nuxtjs/tailwindcss',
@@ -30,5 +27,5 @@ export default defineNuxtConfig({
     },
   },
 
-  compatibilityDate: '2025-03-01',
+  compatibilityDate: '2025-03-12',
 });
